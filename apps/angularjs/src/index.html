@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="feTechTestAngularjs" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Angularjs</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <header class="header">
+      <img src="testflix_logo.png" alt="testflix logo" height="130px" />
+    </header>
+    <main class="container">
+      <h2>Add your code here</h2>
+    </main>
+    <footer class="footer" ng-controller="FooterController as footerLinksList">
+      <p>{{footerLinksList.echo}}</p>
+      <a
+        ng-repeat="link in footerLinksList.links"
+        class="button"
+        tabindex="0"
+        aria-disabled="false"
+        href="{{link.href}}"
+        ><span class="MuiButton-label">{{link.text}}</span></a
+      >
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "monoNxTestWithNextjs",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "mono-nx-test-with-nextjs",
+      "kebab-case"
+    ]
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
+  }
+}

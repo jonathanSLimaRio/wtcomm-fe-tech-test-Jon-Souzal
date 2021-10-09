@@ -1,0 +1,15 @@
+<header class="header">
+  <img src="{{ logo }}" alt="testflix logo" height="130px" />
+</header>
+<main class="container">
+  <h2>Add your code here</h2>
+</main>
+<footer class="footer">
+  <div *ngFor="let link of links">
+    <a class="button" tabindex="0" aria-disabled="false" href="{{ link.href }}"
+      ><span class="MuiButton-label">{{ link.text }}</span></a
+    >
+  </div>
+</footer>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,20 @@
+{
+  "Instructions": {
+    "href": "http://localhost:5200",
+    "text": "Instructions"
+  },
+  "Storybook": { "href": "http://localhost:4400", "text": "Storybook" },
+  "Design": {
+    "href": "http://localhost:5200/assets/design/fe_movies_tech_test.pdf",
+    "text": "Design"
+  },
+  "Swagger": { "href": "http://localhost:3333/swagger-doc", "text": "Swagger" },
+  "Application": {
+    "href": "http://localhost:4200/",
+    "text": "Application"
+  },
+  "Api": {
+    "href": "http://localhost:3333/api/movies",
+    "text": "Api"
+  }
+}

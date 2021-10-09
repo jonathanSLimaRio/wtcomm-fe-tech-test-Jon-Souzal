@@ -1,0 +1,73 @@
+{
+  "npmScope": "mono-nx-test-with-nextjs",
+  "implicitDependencies": {
+    "workspace.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tslint.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "fe-wtc-tech-test": {
+      "tags": []
+    },
+    "fe-wtc-tech-test-e2e": {
+      "tags": [],
+      "implicitDependencies": ["fe-wtc-tech-test"]
+    },
+    "api": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ui"]
+    },
+    "angularjs": {
+      "tags": []
+    },
+    "angularjs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["angularjs"]
+    },
+    "instructions": {
+      "tags": []
+    },
+    "instructions-e2e": {
+      "tags": [],
+      "implicitDependencies": ["instructions"]
+    },
+    "fe-wtc-tech-test-angularv2": {
+      "tags": []
+    },
+    "fe-wtc-tech-test-angularv2-e2e": {
+      "tags": [],
+      "implicitDependencies": ["fe-wtc-tech-test-angularv2"]
+    },
+    "utils": {
+      "tags": []
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  }
+}
