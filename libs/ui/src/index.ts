@@ -6,3 +6,8 @@ export * from './lib/grid/grid';
 export * from './lib/detailsBox';
 export * from './lib/footer/footer';
 export * from './lib/toggle/toggle';
+export * from './lib/movieCard';
+export * from './lib/stars';
+export * from './lib/facets';
+export { QueryProvider, useQuery } from './lib/hooks/useQuery';
+

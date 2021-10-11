@@ -1,11 +1,51 @@
 import React from 'react';
 
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+import { Facets, QueryProvider } from '@mono-nx-test-with-nextjs/ui';
+
+import Results from '../app/components/results';
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    main: {
+      display: 'flex',
+      marginTop: 80,
+      marginBottom: 40,
+    },
+    result: {
+      display: 'grid',
+      gridGap: 40,
+      gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+      gridAutoRows: 'max-content',
+      width: '100%',
+    },
+    filters: {
+      backgroundColor: '#455A64',
+      borderRadius: 20,
+      padding: 20,
+      width: 232,
+      marginRight: 20,
+    },
+  })
+);
+
 const Home = () => {
+  const classes = useStyles();
+
   return (
-    <main>
-      <h1>Edit apps/fe-wtc-tech-test/pages/index.tsx and save to reload.</h1>
-      <h2>Click on the instructions button to understand what to do</h2>
-    </main>
+    <QueryProvider>
+      <main className={classes.main}>
+        <aside>
+          <div className={classes.filters}>
+            <Facets />
+          </div>
+        </aside>
+        <section className={classes.result}>
+          <Results />
+        </section>
+      </main>
+    </QueryProvider>
   );
 };
 
