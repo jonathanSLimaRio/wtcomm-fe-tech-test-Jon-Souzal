@@ -29,7 +29,7 @@ const useStyles = makeStyles({
     display: "flex",
     margin: "0 0 10px 5px",
   },
-  chkBox: {
+  checkBox: {
     height: 20,
     marginRight: 10,
     width: 20,
@@ -85,20 +85,20 @@ export const Facets: React.FC = () => {
       for (const filter in Array.isArray(facets[key].filters)
         ? facets[key].filters.filter((e) => e.label != "Number of awards won")
         : facets[key].filters) {
-        const cat = [];
+        const categ = [];
         const catLabel =
           facets[key].label === "Movies"
             ? facets[key].filters[filter].label
             : facets[key].label;
 
-        cat.push(<div className={classes.mainLabel}>{catLabel}</div>);
+        categ.push(<div className={classes.mainLabel}>{catLabel}</div>);
 
         facets[key].filters[filter].values.map((filter) => {
-          cat.push(
+          categ.push(
             <div className={classes.filterInput}>
               <input
                 type="checkbox"
-                className={classes.chkBox}
+                className={classes.checkBox}
                 value={filter.label}
                 name={catLabel}
                 onChange={(e) => buildQuery(e)}
@@ -109,7 +109,7 @@ export const Facets: React.FC = () => {
             </div>
           );
         });
-        filters.push(<div className={classes.filterCategory}>{cat}</div>);
+        filters.push(<div className={classes.filterCategory}>{categ}</div>);
       }
     }
 

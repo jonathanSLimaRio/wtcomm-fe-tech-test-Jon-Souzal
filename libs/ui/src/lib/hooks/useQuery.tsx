@@ -17,8 +17,6 @@ export const QueryProvider: React.FC = ({ children }) => {
 
   const buildQuery = (e: Event) => {
     const { name, value, checked } = e.currentTarget;
-    // const newQuery = checked ? `${name}=${value}` : '';
-
     const newQuery = new URLSearchParams(query);
 
     if (checked) {

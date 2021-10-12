@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-
+import { useMediaQuery } from "react-responsive";
 import {
   VisibilityIcon,
   VisibilityOffIcon,
@@ -67,6 +67,18 @@ const useStyles = makeStyles(
         width: 200,
         backgroundColor: background[props.saved][props.watched],
       }),
+      rootMobile: (props: { saved: string; watched: string }) => ({
+        justifyContent: 'space-between',
+        borderRadius: 20,
+        boxShadow: '1px 1px 5px #666',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: 10,
+        height: 300,
+        width: 200,
+        backgroundColor: background[props.saved][props.watched],
+        margin: '0 auto',
+      }),
       poster: {
         borderRadius: 10,
         display: 'block',
@@ -93,6 +105,8 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   const [watched, setWatched] = useState(LOWER_CASE_TRUE);
   const [saved, setSaved] = useState(LOWER_CASE_TRUE);
   const classes = useStyles({ saved, watched });
+
+  const isMobile = useMediaQuery({ maxWidth: 767 });
 
   useEffect(() => {
     setWatched(Watched);
@@ -134,7 +148,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
   };
 
   return (
-    <div className={classes.root}>
+    <div className={ isMobile ? classes.rootMobile : classes.root }>
       <header className={classes.header}>
         <div onClick={() => watchedClick()}>{visibility[watched]}</div>
         <div onClick={() => savedClick()}>{isSaved[saved]}</div>

@@ -66,6 +66,7 @@
     "open": "7.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-responsive": "^9.0.0-beta.4",
     "rxjs": "~6.5.5",
     "shelljs": "0.8.4",
     "styled-components": "5.1.1",
