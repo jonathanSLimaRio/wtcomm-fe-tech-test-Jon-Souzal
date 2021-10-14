@@ -10,6 +10,7 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      borderBottom: '1px solid white',
     },
   })
 );

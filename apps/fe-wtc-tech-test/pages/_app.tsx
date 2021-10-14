@@ -11,7 +11,7 @@ const { Instructions, Storybook, Design, Swagger } = LINKS;
 const useStyles = makeStyles(() =>
   createStyles({
     contentContainer: {
-      padding: '0 27px',
+      padding: '0 0',
     },
     root: {
       padding: '0',

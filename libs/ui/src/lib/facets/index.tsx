@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import fetch from "node-fetch";
-import { Button } from '@mono-nx-test-with-nextjs/ui';
+import { Button } from "@mono-nx-test-with-nextjs/ui";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useQuery } from "../hooks/useQuery";
@@ -35,27 +35,31 @@ const useStyles = makeStyles({
     width: 20,
   },
   button: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     borderRadius: 10,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    textTransform: 'capitalize',
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "capitalize",
     height: 38,
-    width: '100%',
+    width: "100%",
   },
 });
 
-export const Facets: React.FC = () => {
+interface IProps {
+  closeModal?: Function;
+}
+
+export const Facets = (props: IProps) => {
   const classes = useStyles();
   const { buildQuery, resetQuery } = useQuery();
-  const [menuFilter, setMenuFilter] = useState<any>([])
+  const [menuFilter, setMenuFilter] = useState<any>([]);
 
   const [facets, setFacets] = useState([]);
 
   const reset = () => {
     resetQuery();
     setMenuFilter([]);
-  }
+  };
 
   useEffect(() => {
     const getFacets = async () => {
@@ -73,7 +77,7 @@ export const Facets: React.FC = () => {
   }, [facets]);
 
   useEffect(() => {
-    if(menuFilter.length <= 0){
+    if (menuFilter.length <= 0) {
       renderFacets();
     }
   }, [menuFilter]);
@@ -118,13 +122,20 @@ export const Facets: React.FC = () => {
 
   return (
     <>
+      {props.closeModal && (
+        <Button
+          style={{ marginBottom: 10 }}
+          onClick={() => props.closeModal()}
+          className={classes.button}
+        >
+          Close filters
+        </Button>
+      )}
       <Button onClick={reset} className={classes.button}>
         Reset filters
       </Button>
 
-      {menuFilter.map(menu => (
-        menu
-      ))}
+      {menuFilter.map((menu) => menu)}
     </>
   );
 };

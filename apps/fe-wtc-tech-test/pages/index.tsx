@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import { Button, Facets, QueryProvider } from "@mono-nx-test-with-nextjs/ui";
 import Results from "../app/components/results";
+import Modal from "react-modal";
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -32,20 +33,30 @@ const useStyles = makeStyles(() =>
       width: "100%",
     },
     button: {
-      backgroundColor: "#455A64",
+      backgroundColor: "transparent",
       fontWeight: "bold",
       textAlign: "center",
-      color: '#fff',
-      height: 42,
+      color: "#fff",
+      position: "absolute",
+      top: 140,
+      left: 0,
       width: "100%",
-      borderTop: '1px solid #fff',
-      borderRadius: 0,
+    },
+    triangular: {
+      height: 0,
+      width: 0,
+      borderTop: "80px solid #455A64",
+    },
+    contentModal: {
+      width: "100%",
+      height: "100%",
     },
   })
 );
 
 const Home = () => {
   const [mobileFilter, setMobileFilter] = useState<boolean>(false);
+  const [width, setWidth] = useState<number>(0);
 
   const Desktop = ({ children }) => {
     const isDesktop = useMediaQuery({ minWidth: 992 });
@@ -55,6 +66,19 @@ const Home = () => {
     const isMobile = useMediaQuery({ maxWidth: 767 });
     return isMobile ? children : null;
   };
+
+  useLayoutEffect(() => {
+    function updateSize() {
+      setWidth(window.innerWidth);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
+  const closeModal = () => {
+    setMobileFilter(false);
+  }
 
   const classes = useStyles();
 
@@ -73,26 +97,34 @@ const Home = () => {
         </main>
       </Desktop>
       <Mobile>
-        <div>
-          <Button
-            onClick={() => {
-              setMobileFilter(!mobileFilter);
-            }}
-            className={classes.button}
-          >
+        <div
+          className={classes.triangular}
+          style={{
+            borderLeft: `${width / 2}px solid transparent`,
+            borderRight: `${width / 2}px solid transparent`,
+          }}
+          onClick={() => {
+            setMobileFilter(!mobileFilter);
+          }}
+        >
+          <Button className={classes.button}>
             {mobileFilter ? "Close filters" : "Open filters"}
           </Button>
         </div>
         <main className={classes.main}>
-          {mobileFilter ? (
+          <Modal
+            isOpen={mobileFilter}
+            onRequestClose={closeModal}
+            className={classes.contentModal}
+            contentLabel="Example Modal"
+          >
             <div className={classes.filtersMobile}>
-              <Facets />
+              <Facets closeModal={closeModal} />
             </div>
-          ) : (
-            <section className={classes.result}>
-              <Results />
-            </section>
-          )}
+          </Modal>
+          <section className={classes.result}>
+            <Results />
+          </section>
         </main>
       </Mobile>
     </QueryProvider>
@@ -100,16 +132,3 @@ const Home = () => {
 };
 
 export default Home;
-
-{
-  /* <main className={classes.main}>
-          <aside>
-            <div className={classes.filters}>
-              <Facets />
-            </div>
-          </aside>
-          <section className={classes.result}>
-            <Results />
-          </section>
-        </main> */
-}
